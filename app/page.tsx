@@ -7,9 +7,14 @@ export default function MorningShineWebsite() {
         <p className="text-xl max-w-2xl mx-auto">
           Daily Morning Car Cleaning Service at Your Doorstep
         </p>
-        <button className="mt-8 bg-white text-black px-6 py-3 rounded-2xl font-semibold shadow-lg hover:scale-105 transition">
-          Book Now
-        </button>
+        <<a
+  href="https://wa.me/919634004355?text=Hi%20I%20want%20to%20book%20DailyCarCare%20service"
+  target="_blank"
+>
+  <button className="mt-8 bg-white text-black px-8 py-3 rounded-2xl font-semibold hover:scale-105 transition">
+    Book on WhatsApp
+  </button>
+</a>
       </section>
 
       {/* Services */}
