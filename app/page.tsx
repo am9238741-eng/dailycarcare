@@ -109,7 +109,7 @@ export default function MorningShineWebsite() {
       {/* Footer */}
       <footer className="bg-black text-white py-8 text-center">
         <h3 className="text-2xl font-bold">DailyCarCare</h3>
-        <p className="mt-2">Daily Car Cleaning Service</p>
+        <p className="mt-2">Daily Car Cleaning Service Available Only in Mathura</p>
         <p className="mt-4 text-gray-400">© 2026 DailyCarCare. All rights reserved.</p>
       </footer>
     </div>
