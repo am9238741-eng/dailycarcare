@@ -22,17 +22,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <<html
-  lang="en"
-  className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
->
-  <head>
-    <meta
-      name="google-site-verification"
-      content="_Vb-P7RFctDgWxiS3CN1P6Mq_nwSzLx8GePWh1hkD9U"
-    />
-  </head>
+ return (
+  <html
+    lang="en"
+    className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+  >
+    <head>
+      <meta
+        name="google-site-verification"
+        content="_Vb-P7RFctDgWxiS3CN1P6Mq_nwSzLx8GePWh1hkD9U"
+      />
+    </head>
 
-  <body className="min-h-full flex flex-col">{children}</body>
-</html>
+    <body className="min-h-full flex flex-col">
+      {children}
+    </body>
+  </html>
+);
