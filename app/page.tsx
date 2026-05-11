@@ -1,4 +1,9 @@
 "use client"
+
+export const metadata = {
+  title: "CarSPA Mathura | Premium Car Cleaning Service",
+  description: "Premium daily car cleaning service in Mathura for all car brands.",
+}
 import { useState } from "react"
 
 export default function CarSPAMathura() {
