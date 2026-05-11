@@ -1,9 +1,3 @@
-"use client"
-
-export const metadata = {
-  title: "CarSPA Mathura | Premium Car Cleaning Service",
-  description: "Premium daily car cleaning service in Mathura for all car brands.",
-}
 import { useState } from "react"
 
 export default function CarSPAMathura() {
@@ -299,7 +293,7 @@ export default function CarSPAMathura() {
               <option>Select Model</option>
 
               {selectedBrand &&
-                brands[selectedBrand as keyof typeof brands].map((model) => (
+                brands[selectedBrand].map((model) => (
                   <option key={model}>{model}</option>
                 ))}
             </select>
@@ -314,6 +308,49 @@ export default function CarSPAMathura() {
                 Confirm Booking on WhatsApp
               </button>
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/919634004355?text=Hi%20I%20want%20to%20book%20CarSPA%20Mathura%20service"
+        target="_blank"
+        className="fixed bottom-6 right-6 z-50"
+      >
+        <div className="bg-green-500 hover:scale-110 transition duration-300 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-2xl text-3xl">
+          💬
+        </div>
+      </a>
+
+      {/* Google Reviews */}
+      <section className="py-20 px-6 bg-zinc-950 text-center">
+        <h2 className="text-4xl font-bold mb-12">Why Customers Love Us</h2>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="bg-black border border-zinc-800 rounded-3xl p-8">
+            <div className="text-yellow-400 text-2xl mb-4">★★★★★</div>
+            <p className="text-gray-300">
+              Very professional service. My Scorpio always looks showroom clean.
+            </p>
+            <h4 className="mt-6 font-bold">Rahul Sharma</h4>
+          </div>
+
+          <div className="bg-black border border-zinc-800 rounded-3xl p-8">
+            <div className="text-yellow-400 text-2xl mb-4">★★★★★</div>
+            <p className="text-gray-300">
+              Best daily car cleaning service in Mathura. Totally worth it.
+            </p>
+            <h4 className="mt-6 font-bold">Amit Verma</h4>
+          </div>
+
+          <div className="bg-black border border-zinc-800 rounded-3xl p-8">
+            <div className="text-yellow-400 text-2xl mb-4">★★★★★</div>
+            <p className="text-gray-300">
+              DailyCarCare team is punctual and trusted. Highly recommended.
+            </p>
+            <h4 className="mt-6 font-bold">Saurabh Jain</h4>
           </div>
         </div>
       </section>
