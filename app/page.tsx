@@ -294,7 +294,7 @@ export default function CarSPAMathura() {
               <option>Select Model</option>
 
               {selectedBrand &&
-                brands[selectedBrand].map((model) => (
+               brands[selectedBrand as keyof typeof brands].map((model) => (
                   <option key={model}>{model}</option>
                 ))}
             </select>
