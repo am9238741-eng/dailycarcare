@@ -1,20 +1,31 @@
 "use client";
-
-import { useState, useEffect } from "react";
+import Navbar from './components/Navbar';
+import { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import {
-  FaStar,
-  FaUser,
   FaWhatsapp,
   FaEllipsisV,
-} from "react-icons/fa";
+  FaUser
+} from 'react-icons/fa';
+import {
+  Home as HomeIcon,
+  Car,
+  Calendar,
+  User
+} from 'lucide-react';
 
 export default function Home() {
   const [brand, setBrand] = useState("");
   const [model, setModel] = useState("");
   const [name, setName] = useState("");
-const [phone, setPhone] = useState("");
+const [vehicle, setVehicle] = useState("");
+const [activeTab, setActiveTab] = useState('home');
 const [loggedIn, setLoggedIn] = useState(false);
+const [showSplash, setShowSplash] = useState(true);
+const [showPopup, setShowPopup] = useState(false);
+const [bookingDone, setBookingDone] = useState(false);
+const [loading, setLoading] = useState(false);
+const [selectedService, setSelectedService] = useState("Daily Cleaning");
 useEffect(() => {
   const savedUser = localStorage.getItem("carspaUser");
 
@@ -313,234 +324,104 @@ const message =
       "_blank"
     );
   };
+if (showSplash) {
+    <div className="fixed inset-0 bg-black flex flex-col items-center justify-center overflow-hidden">
 
-  return (
-    <main className="min-h-screen bg-black text-white">
-      {/* TOP NAVBAR */}
-<header className="border-b border-yellow-500/10 bg-black/90 backdrop-blur-xl sticky top-0 z-50">
-  <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      {/* Orange Glow */}
+      <div className="absolute w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse" />
 
-    <h1 className="text-2xl font-extrabold text-yellow-500">
-      CarSPA Mathura
-    </h1>
-
-    <div className="hidden md:flex items-center gap-8 text-gray-300">
-
-  <button
-    onClick={() =>
-      document
-        .getElementById("home-section")
-        ?.scrollIntoView({ behavior: "smooth" })
-    }
-    className="hover:text-yellow-500 transition"
-  >
-    Home
-  </button>
-
-  <button
-    onClick={() =>
-      document
-        .getElementById("plans-section")
-        ?.scrollIntoView({ behavior: "smooth" })
-    }
-    className="hover:text-yellow-500 transition"
-  >
-    Plans
-  </button>
-
-  <button
-    onClick={() =>
-      document
-        .getElementById("about-section")
-        ?.scrollIntoView({ behavior: "smooth" })
-    }
-    className="hover:text-yellow-500 transition"
-  >
-    About
-  </button>
-
-  <button
-    onClick={() =>
-      window.open("https://wa.me/919634004355", "_blank")
-    }
-    className="hover:text-yellow-500 transition"
-  >
-    Support
-  </button>
-
-  <button
-    onClick={() =>
-      window.open("https://wa.me/919634004355", "_blank")
-    }
-    className="hover:text-yellow-500 transition flex items-center gap-2"
-  >
-    <FaWhatsapp />
-    WhatsApp
-  </button>
-
-</div>
-
-    <div className="flex items-center gap-4">
-
-      <button
-        onClick={() =>
-          document
-            .getElementById("login-section")
-            ?.scrollIntoView({ behavior: "smooth" })
-        }
-        className="border border-yellow-500/20 px-5 py-2 rounded-xl hover:bg-yellow-500 hover:text-black transition"
+      {/* Logo */}
+      <motion.div
+        initial={{ scale: 0.7, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="relative z-10"
       >
-        Login
-      </button>
 
-      <button
-        onClick={() =>
-          document
-            .getElementById("login-section")
-            ?.scrollIntoView({ behavior: "smooth" })
-        }
-        className="bg-yellow-500 text-black px-5 py-2 rounded-xl font-semibold"
+        <h1 className="text-6xl md:text-7xl font-extrabold text-white">
+          Car<span className="text-orange-500">SPA</span>
+        </h1>
+
+      </motion.div>
+
+      {/* Subtitle */}
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="text-gray-400 mt-5 text-lg"
       >
-        Register
-      </button>
+        Premium Daily Car Care
+      </motion.p>
 
     </div>
-  </div>
-</header>
+}
+  return (
+        <>
+          <Navbar />
+          <main className="min-h-screen bg-black text-white pt-28 pb-24 transition-all duration-500">
+      
       {/* HERO */}
-      <section
-  id="home-section"
-  className="max-w-7xl mx-auto px-6 py-24"
+      {/* PREMIUM HERO SECTION */}
+      {activeTab === 'home' && (
+<section id="home-section"
+  className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
 >
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="inline-block bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 px-5 py-2 rounded-full text-sm mb-6">
-              Premium Daily Car Cleaning Service
-            </div>
 
-            <h1 className="text-6xl md:text-7xl font-extrabold text-yellow-500 leading-tight">
-              CarSPA Mathura
-            </h1>
+  {/* Background Glow */}
+  <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 via-black to-black" />
 
-            <p className="text-gray-300 text-xl leading-9 mt-8 max-w-2xl">
-              Start every office morning with a perfectly clean and fresh-smelling car.
-            </p>
+  {/* Blur Effects */}
+  <div className="absolute top-10 left-10 w-72 h-72 bg-orange-500/20 rounded-full blur-3xl" />
+  <div className="absolute bottom-10 right-10 w-72 h-72 bg-yellow-500/10 rounded-full blur-3xl" />
 
-            <div className="flex flex-wrap gap-5 mt-10">
-              <button className="bg-yellow-500 text-black px-8 py-4 rounded-2xl font-bold">
-                Explore Plans
-              </button>
+  <div className="relative z-10 text-center px-6">
 
-              <button className="border border-yellow-500 text-yellow-400 px-8 py-4 rounded-2xl flex items-center gap-3">
-                <FaWhatsapp />
-                WhatsApp Booking
-              </button>
-            </div>
-          </motion.div>
+    <motion.h1
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      className="text-5xl md:text-7xl font-extrabold text-white leading-tight"
+    >
+      Premium
+      <span className="text-orange-500"> CarSPA</span>
+    </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="bg-zinc-900 border border-yellow-500/10 rounded-[40px] p-10"
-          >
-            <div className="flex items-center justify-between">
-              <h2 className="text-4xl font-bold text-yellow-500">
-                Premium Members
-              </h2>
+    <motion.p
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.2 }}
+      className="mt-6 text-gray-300 text-lg max-w-xl mx-auto"
+    >
+      Daily Car Cleaning Service with Luxury Finish & Professional Care.
+    </motion.p>
 
-              <button className="text-white text-2xl">
-                <FaEllipsisV />
-              </button>
-            </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.5 }}
+      className="mt-10 flex items-center justify-center gap-4 flex-wrap"
+    >
 
-            <div className="space-y-5 mt-10">
-              <div className="bg-black rounded-2xl p-5 border border-yellow-500/10">
-                ✔ Fresh-smelling cabin daily
-              </div>
-
-              <div className="bg-black rounded-2xl p-5 border border-yellow-500/10">
-                ✔ Clean dashboard & mats
-              </div>
-
-              <div className="bg-black rounded-2xl p-5 border border-yellow-500/10">
-                ✔ Scratch-free microfiber cleaning
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-    {/* LOGIN */}
-<section
-  id="login-section"
-  className="max-w-6xl mx-auto px-6 py-20"
+     <button
+  onClick={() => setShowPopup(true)}
+  className="bg-orange-500 hover:bg-orange-600 transition-all duration-300 px-8 py-4 rounded-2xl text-white font-bold shadow-[0_0_30px_rgba(255,140,0,0.5)]"
 >
-  <div className="bg-zinc-900 rounded-[40px] border border-yellow-500/10 p-10">
-
-    <h2 className="text-5xl font-bold text-yellow-500 text-center mb-12">
-      {loggedIn ? "Welcome Back" : "Login / Register"}
-    </h2>
-
-    {!loggedIn ? (
-      <>
-        <div className="grid md:grid-cols-2 gap-6">
-
-          <input
-  type="text"
-  placeholder="Enter Name"
-  value={name}
-  onChange={(e) => setName(e.target.value)}
-  className="bg-black border border-yellow-500/20 p-5 rounded-2xl"
-/>
-
-<input
-  type="text"
-  placeholder="Phone Number"
-  value={phone}
-  onChange={(e) => setPhone(e.target.value)}
-  className="bg-black border border-yellow-500/20 p-5 rounded-2xl"
-/>
-
-       
-        </div>
-
-       <button
-  onClick={handleLogin}
-  className="bg-yellow-500 text-black px-8 py-4 rounded-2xl font-bold mt-8"
->
-  Continue
+  Book Now
 </button>
-      </>
-    ) : (
-      <div className="text-center">
 
-        <h3 className="text-3xl font-bold text-yellow-500">
-          You Are Logged In
-        </h3>
-<button
-  onClick={() => {
-    localStorage.removeItem("carspaUser");
-    setLoggedIn(false);
-  }}
-  className="bg-red-500 text-white px-8 py-4 rounded-2xl font-bold mt-8"
->
-  Logout
-</button>
-        <p className="text-gray-400 mt-4">
-          Welcome to CarSPA Mathura Premium Dashboard.
-        </p>
+      <button className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-all duration-300 px-8 py-4 rounded-2xl font-bold">
+        Explore Services
+      </button>
 
-      </div>
-    )}
+    </motion.div>
+
   </div>
-</section>
 
-      {/* CAR SELECT */}
+</section>
+)}
+
+  {/* CAR SELECT */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <div className="bg-zinc-900 rounded-[40px] border border-yellow-500/10 p-10">
           <h2 className="text-5xl font-bold text-yellow-500 text-center mb-12">
@@ -617,8 +498,8 @@ const message =
           </div>
         </div>
       </section>
-
       {/* PLANS */}
+      {activeTab === 'services' && (
       <section
   id="plans-section"
   className="max-w-7xl mx-auto px-6 py-20"
@@ -663,6 +544,7 @@ const message =
           ))}
         </div>
       </section>
+)}
 
       {/* DASHBOARD */}
       <section className="max-w-6xl mx-auto px-6 py-20">
@@ -741,10 +623,177 @@ const message =
     </button>
   </div>
 </section>
-      {/* FOOTER */}
+{/* PREMIUM STATS */}
+<section className="max-w-7xl mx-auto px-6 py-10">
+
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+
+    <div className="bg-zinc-900/60 backdrop-blur-lg border border-orange-500/20 rounded-3xl p-6 text-center shadow-[0_0_30px_rgba(255,140,0,0.08)] hover:scale-105 transition-all duration-300">
+
+      <h2 className="text-4xl font-bold text-orange-500">
+        500+
+      </h2>
+
+      <p className="text-gray-400 mt-2">
+        Cars Cleaned
+      </p>
+
+    </div>
+
+    <div className="bg-zinc-900/60 backdrop-blur-lg border border-orange-500/20 rounded-3xl p-6 text-center shadow-[0_0_30px_rgba(255,140,0,0.08)] hover:scale-105 transition-all duration-300">
+
+      <h2 className="text-4xl font-bold text-orange-500">
+        4.9★
+      </h2>
+
+      <p className="text-gray-400 mt-2">
+        Customer Rating
+      </p>
+
+    </div>
+
+    <div className="bg-zinc-900/60 backdrop-blur-lg border border-orange-500/20 rounded-3xl p-6 text-center shadow-[0_0_30px_rgba(255,140,0,0.08)] hover:scale-105 transition-all duration-300">
+
+      <h2 className="text-4xl font-bold text-orange-500">
+        24/7
+      </h2>
+
+      <p className="text-gray-400 mt-2">
+        Support
+      </p>
+
+    </div>
+
+    <div className="bg-zinc-900/60 backdrop-blur-lg border border-orange-500/20 rounded-3xl p-6 text-center shadow-[0_0_30px_rgba(255,140,0,0.08)] hover:scale-105 transition-all duration-300">
+
+      <h2 className="text-4xl font-bold text-orange-500">
+        100%
+      </h2>
+
+      <p className="text-gray-400 mt-2">
+        Satisfaction
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+{/* BOOKING POPUP */}
+{activeTab === 'booking' && showPopup && (
+  <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end justify-center z-50">
+
+    <div className="w-full max-w-md bg-zinc-900 rounded-t-3xl p-6 border-t border-orange-500 shadow-2xl">
+
+      <h2 className="text-3xl font-bold text-orange-500 mb-6">
+  Book Your Service
+</h2>
+
+<div className="space-y-4">
+
+  <input
+    type="text"
+    placeholder="Your Name"
+    value={name}
+    onChange={(e) => setName(e.target.value)}
+    className="w-full bg-black border border-orange-500/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-orange-500"
+  />
+
+  <input
+  type="text"
+  placeholder="Vehicle Last 4 Digits"
+  value={vehicle}
+  onChange={(e) => setVehicle(e.target.value)}
+  className="w-full bg-black border border-orange-500/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-orange-500"
+/>
+<select
+  value={selectedService}
+  onChange={(e) => setSelectedService(e.target.value)}
+  className="w-full bg-black border border-orange-500/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-orange-500"
+>
+
+  <option>Daily Cleaning</option>
+  <option>Interior Spa</option>
+  <option>Microfiber Care</option>
+  <option>Premium Wash</option>
+
+</select>
+  <button
+  onClick={() => {
+    setLoading(true);
+
+    setTimeout(() => {
+
+      window.open(
+        `https://wa.me/919634004355?text=Hello CarSPA Mathura,%0AName: ${name}%0AVehicle: ${vehicle}%0AService: ${selectedService}%0AI want to book a premium car cleaning service.`,
+        "_blank"
+      );
+
+      setShowPopup(false);
+      setBookingDone(true);
+      setLoading(false);
+
+      setTimeout(() => {
+        setBookingDone(false);
+      }, 3000);
+
+    }, 1500);
+  }}
+  className="w-full bg-orange-500 hover:bg-orange-600 py-4 rounded-2xl text-white font-bold transition-all duration-300"
+>
+  {loading ? "Processing..." : "Confirm Booking"}
+</button>
+</div>
+
+      <p className="text-gray-300 leading-7">
+        Your premium CarSPA booking request has been submitted successfully.
+      </p>
+
+      <button
+        onClick={() => setShowPopup(false)}
+        className="mt-6 w-full bg-orange-500 hover:bg-orange-600 py-4 rounded-2xl text-white font-bold transition-all duration-300"
+      >
+        Done
+          </button>
+
+    </div>
+
+  </div>
+
+)}
+
+{/* SUCCESS POPUP */}
+{bookingDone && (
+  <div className="fixed top-6 right-6 bg-zinc-900 border border-orange-500/20 px-6 py-4 rounded-2xl shadow-[0_0_30px_rgba(255,140,0,0.2)] z-50">
+
+    <h3 className="text-orange-500 font-bold text-lg">
+      Booking Successful 🚘
+    </h3>
+
+    <p className="text-gray-300 text-sm mt-1">
+      Your booking request has been sent.
+    </p>
+
+  </div>
+)}
+{activeTab === 'profile' && (
+  <section
+    id="profile-section"
+    className="min-h-screen bg-black px-6 py-24"
+  >
+    <div className="max-w-md mx-auto bg-zinc-900 border border-orange-500/20 rounded-3xl p-8 shadow-[0_0_40px_rgba(255,140,0,0.08)]">
+
+      {/* your profile content here */}
+
+    </div>
+  </section>
+)}
+ {/* FOOTER */}
 <footer className="border-t border-yellow-500/10 bg-zinc-950 mt-20">
+
   <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
-    
+
+    {/* COLUMN 1 */}
     <div>
       <h2 className="text-3xl font-bold text-yellow-500">
         CarSPA Mathura
@@ -755,19 +804,46 @@ const message =
       </p>
     </div>
 
+    {/* COLUMN 2 */}
     <div>
       <h3 className="text-xl font-bold text-yellow-500 mb-5">
         Quick Links
       </h3>
 
       <div className="space-y-3 text-gray-400">
-        <p>Home</p>
-        <p>Plans</p>
-        <p>About</p>
-        <p>Support</p>
+
+        <button
+          onClick={() => setActiveTab('home')}
+          className="block hover:text-orange-500 transition"
+        >
+          Home
+        </button>
+
+        <button
+          onClick={() => setActiveTab('services')}
+          className="block hover:text-orange-500 transition"
+        >
+          Services
+        </button>
+
+        <button
+          onClick={() => setActiveTab('booking')}
+          className="block hover:text-orange-500 transition"
+        >
+          Booking
+        </button>
+
+        <button
+          onClick={() => setActiveTab('profile')}
+          className="block hover:text-orange-500 transition"
+        >
+          Profile
+        </button>
+
       </div>
     </div>
 
+    {/* COLUMN 3 */}
     <div>
       <h3 className="text-xl font-bold text-yellow-500 mb-5">
         Services
@@ -781,6 +857,7 @@ const message =
       </div>
     </div>
 
+    {/* COLUMN 4 */}
     <div>
       <h3 className="text-xl font-bold text-yellow-500 mb-5">
         Contact
@@ -792,12 +869,91 @@ const message =
         <p>support@carspamathura.in</p>
       </div>
     </div>
+
   </div>
 
+  {/* COPYRIGHT */}
   <div className="border-t border-yellow-500/10 py-6 text-center text-gray-500 text-sm">
     © 2026 CarSPA Mathura. All Rights Reserved.
   </div>
+
 </footer>
-    </main>
-  );
+{/* FLOATING WHATSAPP BUTTON */}
+<a
+  href="https://wa.me/919634004355"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="fixed bottom-28 right-6 w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white text-3xl shadow-[0_0_30px_rgba(34,197,94,0.5)] z-50 hover:scale-110 transition-all duration-300"
+>
+  💬
+</a>
+{/* BOTTOM NAVIGATION */}
+<div className="fixed bottom-0 left-0 w-full bg-zinc-950/90 backdrop-blur-xl border-t border-orange-500/20 z-50 shadow-[0_-5px_30px_rgba(255,140,0,0.15)]">
+
+  <div className="flex items-center justify-around py-4">
+
+    <button
+  onClick={() => {
+    setActiveTab('home');
+  }}
+  className={`flex flex-col items-center text-sm gap-1 px-4 py-2 rounded-2xl transition-all duration-300 ${
+    activeTab === 'home'
+      ? 'text-orange-500 scale-110 bg-orange-500/10'
+      : 'text-gray-300 hover:text-orange-400'
+  }`}
+>
+  <HomeIcon size={22} />
+  Home
+</button>
+
+    <button
+  onClick={() => {
+    setActiveTab('services');
+  }}
+  className={`flex flex-col items-center text-sm gap-1 px-4 py-2 rounded-2xl transition-all duration-300 ${
+    activeTab === 'services'
+      ? 'text-orange-500 scale-110 bg-orange-500/10'
+      : 'text-gray-300 hover:text-orange-400'
+  }`}
+>
+  <Car size={22} />
+  Services
+</button>
+
+    <button
+  onClick={() => {
+    setActiveTab('booking');
+  }}
+  className={`flex flex-col items-center text-sm gap-1 px-4 py-2 rounded-2xl transition-all duration-300 ${
+    activeTab === 'booking'
+      ? 'text-orange-500 scale-110 bg-orange-500/10'
+      : 'text-gray-300 hover:text-orange-400'
+  }`}
+>
+  <Calendar size={22} />
+  Booking
+</button>
+
+    <button
+  onClick={() => {
+    setActiveTab('profile');
+  }}
+  className={`flex flex-col items-center text-sm gap-1 px-4 py-2 rounded-2xl transition-all duration-300 ${
+    activeTab === 'profile'
+      ? 'text-orange-500 scale-110 bg-orange-500/10'
+      : 'text-gray-300 hover:text-orange-400'
+  }`}
+>
+  <User size={22} />
+  Profile
+</button>
+
+  </div>
+
+</div>
+
+</main>
+
+</>
+);
 }
